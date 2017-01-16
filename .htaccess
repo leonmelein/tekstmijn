@@ -1,5 +1,10 @@
+AddDefaultCharset utf-8
+
 FallbackResource /index.php
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !(/$|\.)
 RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
-AddDefaultCharset utf-8
+
+# Rewrite HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
