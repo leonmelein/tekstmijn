@@ -1,0 +1,27 @@
+{
+  "name": "Hofstad",
+  "homepage": "https://github.com/thesociallions/hofstad",
+  "authors": [
+    "Reinard van Dalen <r.g.van.dalen@student.rug.nl> en Léon Melein <l.r.melein@student.rug.nl>"
+  ],
+  "description": "Stageopdracht MA Information Science",
+  "main": "index.php",
+  "keywords": [
+    "stage",
+    "schrijfvaardigheid",
+    "Nederlands"
+  ],
+  "license": "Closed source",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

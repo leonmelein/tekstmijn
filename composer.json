@@ -1,0 +1,11 @@
+{
+    "name": "rug/hofstad",
+    "description": "Stageopdracht MA Information Science",
+    "type": "project",
+    "license": "Closed source",
+    "require": {
+        "catfan/medoo": "^1.1",
+        "league/plates": "^3.3",
+        "bramus/router": "^1.1"
+    }
+}
