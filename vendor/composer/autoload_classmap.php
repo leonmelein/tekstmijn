@@ -20,4 +20,13 @@ return array(
     'League\\Plates\\Template\\Functions' => $vendorDir . '/league/plates/src/Template/Functions.php',
     'League\\Plates\\Template\\Name' => $vendorDir . '/league/plates/src/Template/Name.php',
     'League\\Plates\\Template\\Template' => $vendorDir . '/league/plates/src/Template/Template.php',
+    'Upload\\Autoloader' => $vendorDir . '/codeguy/upload/src/Upload/Autoloader.php',
+    'Upload\\Exception\\UploadException' => $vendorDir . '/codeguy/upload/src/Upload/Exception/UploadException.php',
+    'Upload\\File' => $vendorDir . '/codeguy/upload/src/Upload/File.php',
+    'Upload\\Storage\\Base' => $vendorDir . '/codeguy/upload/src/Upload/Storage/Base.php',
+    'Upload\\Storage\\FileSystem' => $vendorDir . '/codeguy/upload/src/Upload/Storage/FileSystem.php',
+    'Upload\\Validation\\Base' => $vendorDir . '/codeguy/upload/src/Upload/Validation/Base.php',
+    'Upload\\Validation\\Extension' => $vendorDir . '/codeguy/upload/src/Upload/Validation/Extension.php',
+    'Upload\\Validation\\Mimetype' => $vendorDir . '/codeguy/upload/src/Upload/Validation/Mimetype.php',
+    'Upload\\Validation\\Size' => $vendorDir . '/codeguy/upload/src/Upload/Validation/Size.php',
 );

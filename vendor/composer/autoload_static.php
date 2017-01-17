@@ -25,6 +25,13 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
     );
 
     public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'Upload' => 
+            array (
+                0 => __DIR__ . '/..' . '/codeguy/upload/src',
+            ),
+        ),
         'B' => 
         array (
             'Bramus' => 
@@ -49,6 +56,15 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'League\\Plates\\Template\\Functions' => __DIR__ . '/..' . '/league/plates/src/Template/Functions.php',
         'League\\Plates\\Template\\Name' => __DIR__ . '/..' . '/league/plates/src/Template/Name.php',
         'League\\Plates\\Template\\Template' => __DIR__ . '/..' . '/league/plates/src/Template/Template.php',
+        'Upload\\Autoloader' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Autoloader.php',
+        'Upload\\Exception\\UploadException' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Exception/UploadException.php',
+        'Upload\\File' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/File.php',
+        'Upload\\Storage\\Base' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Storage/Base.php',
+        'Upload\\Storage\\FileSystem' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Storage/FileSystem.php',
+        'Upload\\Validation\\Base' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Base.php',
+        'Upload\\Validation\\Extension' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Extension.php',
+        'Upload\\Validation\\Mimetype' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Mimetype.php',
+        'Upload\\Validation\\Size' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Size.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
