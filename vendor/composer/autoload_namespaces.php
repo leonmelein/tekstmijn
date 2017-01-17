@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Upload' => array($vendorDir . '/codeguy/upload/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'Bramus' => array($vendorDir . '/bramus/router/src'),
 );
