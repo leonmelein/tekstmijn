@@ -1,5 +1,15 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 body {
     padding-top: 80px;
+    font-family: 'Roboto', sans-serif !important;
 }
 .starter-template {
     padding: 40px 15px;
@@ -9,4 +19,12 @@ body {
 .input-group[class*=col-]{
     padding-left: 15px;
     padding-right: 15px
+}
+
+.tooltip {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.popover {
+    font-family: 'Roboto', sans-serif !important;
 }
