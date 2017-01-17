@@ -14,7 +14,7 @@
     <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/vendor/application/bootstrap-theme.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/vendor/application/application.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
 
@@ -27,14 +27,27 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <?php $this->insert('menu') ?>
+        <?php $this->insert('header') ?>
     </div>
 </nav>
 
 <div class="container">
-    <?=$this->section('content')?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php $this->insert('navigation') ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <?php $this->insert('menu') ?>
+        </div>
+        <div class="col-md-9">
+            <?=$this->section('content')?>
+        </div>
+    </div>
 </div><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
