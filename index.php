@@ -12,11 +12,19 @@
         'password' => 'LR_hdh4@26', // TODO: Move to config file?
         'charset' => 'utf8'
     ]);
-    $templates = new League\Plates\Engine('view', 'tpl');
+
+    function getTemplates(){
+        $templates = new League\Plates\Engine('view', 'tpl');
+        //$templates->addFolder("assignments", "/view/assignments");
+        //$templates->addFolder("questionnaires", "/view/questionnaires");
+        //$templates->addFolder("signup", "/view/signup");
+        return $templates;
+    }
+
     $router = new \Bramus\Router\Router();
 
     $router->get("/", function (){
-        echo "<h1>Hello world!</h1>";
+        echo getTemplates()->render("overview", ["title" => "Hofstad"]);
     });
 
     $router->run();
