@@ -7,7 +7,7 @@
     $database = new medoo([
         'database_type' => 'mysql',
         'database_name' => 'hofstad',
-        'server' => 'localhost',
+        'server' => 'srv-01.reinardvandalen.nl',
         'username' => 'hofstad',
         'password' => 'LR_hdh4@26', // TODO: Move to config file?
         'charset' => 'utf8'
