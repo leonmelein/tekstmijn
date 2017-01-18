@@ -55,9 +55,13 @@
 
     $router->get("/assignment/(\d+)", function (){
         $bp = getBootstrap();
+        // Generate menu
+        $menu = generateMenu($bp, ["active" => "Opdrachten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../../", "Opdracht" => "#"]);
 
-        echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdrachten", "breadcrumbs" => $breadcrumbs]);
+        echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdrachten", "breadcrumbs" => $breadcrumbs,
+            "menu" => $menu, "page_title" => "Opdracht X"
+        ]);
     });
 
     $router->run();
