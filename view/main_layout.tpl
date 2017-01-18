@@ -34,20 +34,7 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <?php $this->insert('navigation') ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <?php $this->insert('menu') ?>
-        </div>
-        <div class="col-md-9">
-            <?=$this->section('content')?>
-        </div>
-    </div>
+    <?=$this->section('content')?>
 </div><!-- /.container -->
 
 <!-- Bootstrap core JavaScript

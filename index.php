@@ -4,6 +4,7 @@
  */
     require("vendor/autoload.php");
     require("model/index.php");
+    require("model/assignments.php");
     use BootPress\Bootstrap\v3\Component as Bootstrap;
 
     function getDatabase(){
@@ -21,6 +22,7 @@
     function getTemplates(){
         $templates = new League\Plates\Engine('view', 'tpl');
         $templates->addFolder("login", "view/login");
+        $templates->addFolder("assignments", "view/assignments");
         return $templates;
     }
 
@@ -31,19 +33,31 @@
     $router = new \Bramus\Router\Router();
 
     $router->get("/", function (){
+        $bp = getBootstrap();
         // Get data
-        $data = getStudents(getDatabase());
-        $columns = [["#", "id"], ["First name", "firstname"], ["Last name", "lastname"]];
+        $data = getAssignments(getDatabase(), 16001);
+        $columns = [["Titel", "title"], ["Status", "status"], ["Uiterste inleverdatum", "end_date"]];
+
+        // Generate menu
+        $menu = generateMenu($bp, ["active" => "Opdrachten", "align" => "stacked"]);
+        $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "#"]);
+        $link = '<a href="assignment/%s/">%s</a>';
 
         // Generate page
-        echo getTemplates()->render("overview", [
-            "title" => "Hofstad - Overzicht",
-            "table" => generateTable(getBootstrap(), $columns, $data)
+        echo getTemplates()->render("assignments::index", [
+            "title" => "Hofstad | Overzicht",
+            "page_title" => "Opdrachten",
+            "table" => generateTable($bp, $columns, $data, $link),
+            "menu" => $menu,
+            "breadcrumbs" => $breadcrumbs,
         ]);
     });
 
-    $router->get("/signin", function (){
-        echo getTemplates()->render("login::login", ["title" => "Hofstad - Login"]);
+    $router->get("/assignment/(\d+)", function (){
+        $bp = getBootstrap();
+        $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../../", "Opdracht" => "#"]);
+
+        echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdrachten", "breadcrumbs" => $breadcrumbs]);
     });
 
     $router->run();
