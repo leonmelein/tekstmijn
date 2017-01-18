@@ -66,8 +66,12 @@
         $data = getAssignment(getDatabase(), $assignment_id);
         $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../../", "Opdracht" => "#"]);
 
-        echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdrachten", "breadcrumbs" => $breadcrumbs,
-            "menu" => $menu, "page_title" => $data['title'], "status" => $data['status'], "deadline" => $data["deadline"]
+        echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdracht: " . $data['title'],
+                                                                "breadcrumbs" => $breadcrumbs,
+                                                                "menu" => $menu,
+                                                                "page_title" => $data['title'],
+                                                                "status" => $data['status'],
+                                                                "deadline" => $data["deadline"]
         ]);
     });
 
