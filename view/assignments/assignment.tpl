@@ -27,6 +27,24 @@
             <div id="submission" class="tab-pane">
                 <br/>
                 <h4>Inzendingen</h4>
+                <br/>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="file">Bestand</label>
+                            <div class="col-md-4">
+                                <input id="file" name="file" class="input-file" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <button id="submit" name="submit" class="btn btn-primary">Uploaden</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
             </div>
         </div>
     </div>
