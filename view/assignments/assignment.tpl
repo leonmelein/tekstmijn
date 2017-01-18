@@ -65,6 +65,7 @@
                             <label class="col-md-2 control-label" for="file">Bestand</label>
                             <div class="col-md-4">
                                 <input id="file" name="file" class="input-file" type="file">
+                                <span class="help-block">Selecteer een .docx-document van maximaal 5 MB</span>
                             </div>
                         </div>
                         <div class="form-group">
