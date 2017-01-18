@@ -5,7 +5,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Hofstad</a>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+            <img alt="Brand" src="/assets/img/logo.svg"> Hofstad
+        </a>
+    </div>
 </div>
 <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
