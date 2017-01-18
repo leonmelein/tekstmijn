@@ -5,8 +5,8 @@
         $querystring = "SELECT id, title, status, DATE_FORMAT(end_date, '%d %M %Y %H:%i') AS end_date
                         FROM (
                             SELECT assignments.id AS id, assignments.title AS title,
-                              IF(assignments_class.start_date < curdate() < assignments_class.end_date,
-                                 'Open', 'Gesloten') AS status,
+                              IF(NOW() BETWEEN assignments_class.start_date AND assignments_class.end_date,
+                                'Open', 'Gesloten') AS status,
                                  assignments_class.end_date AS end_date
                             FROM assignments, assignments_class, students
                             WHERE students.id = $quoted_id
@@ -26,8 +26,8 @@
         $quoted_id = $database->quote($assignment_id);
         $quoted_class = $database->quote($_SESSION['class']);
 
-        $querystring = "SELECT title, IF(assignments_class.start_date < curdate() < assignments_class.end_date,
-                                 'Open', 'Gesloten') AS status, DATE_FORMAT(end_date, '%d %M %Y %H:%i') as deadline
+        $querystring = "SELECT title, IF(NOW() BETWEEN assignments_class.start_date AND assignments_class.end_date,
+            'Open', 'Gesloten') AS status, DATE_FORMAT(end_date, '%d %M %Y %H:%i') as deadline
                         FROM assignments, assignments_class
                         WHERE assignments.id = assignments_class.assignment_id
                         AND class_id = $quoted_class
@@ -35,3 +35,4 @@
 
         return $database->query($querystring)->fetchAll()[0];
     }
+

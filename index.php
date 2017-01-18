@@ -5,6 +5,7 @@
     require("vendor/autoload.php");
     require("model/index.php");
     require("model/assignments.php");
+    require("model/submissions.php");
     use BootPress\Bootstrap\v3\Component as Bootstrap;
 
     function getDatabase(){
@@ -24,6 +25,12 @@
         $templates->addFolder("login", "view/login");
         $templates->addFolder("assignments", "view/assignments");
         return $templates;
+    }
+
+    function getRedirect($url, $statusCode = 303)
+    {
+        header('Location: ' . $url, true, $statusCode);
+        die();
     }
 
     function getBootstrap(){
@@ -61,9 +68,12 @@
         session_start();
 
         $bp = getBootstrap();
+        $database = getDatabase();
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Opdrachten", "align" => "stacked"]);
-        $data = getAssignment(getDatabase(), $assignment_id);
+        $data = getAssignment($database, $assignment_id);
+        $submission = getSubmission($database, $_SESSION["user"], $assignment_id);
+
         $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../../", "Opdracht" => "#"]);
 
         echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdracht: " . $data['title'],
@@ -71,8 +81,41 @@
                                                                 "menu" => $menu,
                                                                 "page_title" => $data['title'],
                                                                 "status" => $data['status'],
-                                                                "deadline" => $data["deadline"]
+                                                                "deadline" => $data["deadline"],
+                                                                "submission" => $submission
         ]);
+    });
+
+    $router->post("/assignment/(\d+)/submit", function ($assignment_id){
+        session_start();
+        $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
+        $file = new \Upload\File('file', $storage);
+        $new_filename = uniqid();
+        $db_filename = $new_filename . "." . $file->getExtension();
+
+        $file->setName($new_filename);
+
+        $file->addValidations(array(
+            // Ensure file is of type "image/png"
+            new \Upload\Validation\Mimetype(array('application/vnd.openxmlformats-officedocument.wordprocessingml.document')),
+
+            // Ensure file is no larger than 5M (use "B", "K", M", or "G")
+            new \Upload\Validation\Size('5M')
+        ));
+
+        // Try to upload file
+        try {
+            // Success!
+            $file->upload();
+            $rows_affected = setSubmission(getDatabase(), $_SESSION['user'], $assignment_id, $db_filename);
+            if ($rows_affected){
+                getRedirect("/assignment/".$assignment_id."/?upload=success");
+            } else {
+                getRedirect("/assignment/".$assignment_id."/?upload=failed");
+            }
+        } catch (\Exception $e) {
+            getRedirect("/assignment/".$assignment_id."/?upload=failed");
+        }
     });
 
     $router->run();

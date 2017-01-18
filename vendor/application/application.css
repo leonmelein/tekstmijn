@@ -172,3 +172,7 @@ input.input-file {
     background-image: none !important;
     border: 0 !important;
 }
+
+.control-label {
+    text-align: left !important;
+}
