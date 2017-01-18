@@ -21,6 +21,10 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         array (
             'League\\Plates\\' => 14,
         ),
+        'C' => 
+        array (
+            'Carrooi\\DocxExtractor\\' => 22,
+        ),
         'B' => 
         array (
             'BootPress\\Validator\\' => 20,
@@ -44,6 +48,10 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'League\\Plates\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/plates/src',
+        ),
+        'Carrooi\\DocxExtractor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/carrooi/docx-extractor/src',
         ),
         'BootPress\\Validator\\' => 
         array (
@@ -111,6 +119,13 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'BootPress\\Table\\Component' => __DIR__ . '/..' . '/bootpress/table/src/Component.php',
         'BootPress\\Validator\\Component' => __DIR__ . '/..' . '/bootpress/validator/src/Component.php',
         'Bramus\\Router\\Router' => __DIR__ . '/..' . '/bramus/router/src/Bramus/Router/Router.php',
+        'Carrooi\\DocxExtractor\\DocxExtractor' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/DocxExtractor.php',
+        'Carrooi\\DocxExtractor\\ExtractorException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
+        'Carrooi\\DocxExtractor\\FileNotFoundException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
+        'Carrooi\\DocxExtractor\\IOException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
+        'Carrooi\\DocxExtractor\\InvalidArgumentException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
+        'Carrooi\\DocxExtractor\\InvalidStateException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
+        'Carrooi\\DocxExtractor\\RuntimeException' => __DIR__ . '/..' . '/carrooi/docx-extractor/src/exceptions.php',
         'League\\Plates\\Engine' => __DIR__ . '/..' . '/league/plates/src/Engine.php',
         'League\\Plates\\Extension\\Asset' => __DIR__ . '/..' . '/league/plates/src/Extension/Asset.php',
         'League\\Plates\\Extension\\ExtensionInterface' => __DIR__ . '/..' . '/league/plates/src/Extension/ExtensionInterface.php',

@@ -18,16 +18,13 @@
 
         <div class="tab-content">
             <div id="info" class="tab-pane active">
-                <br/>
-                <h4>Status</h4>
-                <p>Dingen</p>
-                <h4>Uiterste inleverdatum</h4>
-                <p>voor de zomervakantie ergens is wel prima, gr. george.</p>
+                <h4 class="assignment_info">Status</h4>
+                <p><?=$this->e($status)?></p>
+                <h4 class="assignment_info">Uiterste inleverdatum</h4>
+                <p><?=$this->e($deadline)?></p>
             </div>
             <div id="submission" class="tab-pane">
-                <br/>
-                <h4>Inzendingen</h4>
-                <br/>
+                <h4 class="assignment_info">Inzendingen</h4>
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">

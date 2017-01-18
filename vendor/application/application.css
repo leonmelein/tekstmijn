@@ -158,3 +158,17 @@ h1.page_title {
     margin-top: 0 !important;
     margin-bottom: 20px;
 }
+
+h4.assignment_info {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+input.input-file {
+    margin-top: 7px !important;
+}
+
+.btn-primary {
+    background-image: none !important;
+    border: 0 !important;
+}

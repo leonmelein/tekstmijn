@@ -34,6 +34,10 @@
 
     $router->get("/", function (){
         $bp = getBootstrap();
+        session_start();
+        $_SESSION['user'] = 16001;
+        $_SESSION['class'] = 1;
+
         // Get data
         $data = getAssignments(getDatabase(), 16001);
         $columns = [["Titel", "title"], ["Status", "status"], ["Uiterste inleverdatum", "end_date"]];
@@ -53,14 +57,17 @@
         ]);
     });
 
-    $router->get("/assignment/(\d+)", function (){
+    $router->get("/assignment/(\d+)", function ($assignment_id) {
+        session_start();
+
         $bp = getBootstrap();
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Opdrachten", "align" => "stacked"]);
+        $data = getAssignment(getDatabase(), $assignment_id);
         $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../../", "Opdracht" => "#"]);
 
         echo getTemplates()->render("assignments::assignment", ["title" => "Hofstad | Opdrachten", "breadcrumbs" => $breadcrumbs,
-            "menu" => $menu, "page_title" => "Opdracht X"
+            "menu" => $menu, "page_title" => $data['title'], "status" => $data['status'], "deadline" => $data["deadline"]
         ]);
     });
 
