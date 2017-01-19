@@ -1,4 +1,4 @@
-<?php $this->layout('main_layout', ['title' => $title]); ?>
+<?php $this->layout('main_layout', ['title' => $title, 'pageJS' => $page_js]); ?>
 <div class="row">
     <div class="col-md-12">
         <?php echo $breadcrumbs; ?>
@@ -25,10 +25,11 @@
     </div>
     <div class="col-md-9">
         <h1 class="page_title"><?php echo $page_title; ?></h1>
-        <ul class="nav nav-tabs">
+        <?php echo $tabs; ?>
+        <!-- <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
             <li><a data-toggle="tab" href="#submission">Inzending</a></li>
-        </ul>
+        </ul> -->
 
         <div class="tab-content">
             <div id="info" class="tab-pane active">
@@ -57,25 +58,32 @@
                 }
                 ?>
 
+                <?php if ($status == "Open"){ ?>
+                   <h4 class="assignment_info">Nieuwe inzending</h4>
+                    <form class="form-horizontal" action="submit/" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="form-group" style="display: <?php echo ($overwrite == 1 ? 'inherit;' : 'none;'); ?>">
+                                <div class="col-md-6">
+                                    <p class="form-control-static overwrite-warning"><span class="glyphicon glyphicon-info-sign"></span> Je eerdere inzending wordt overschreven.</p>
+                                </div>
+                            </div>
 
-                <h4 class="assignment_info">Nieuwe inzending</h4>
-                <form class="form-horizontal" action="submit/" method="post" enctype="multipart/form-data">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="file">Bestand</label>
-                            <div class="col-md-4">
-                                <input id="file" name="file" class="input-file" type="file">
-                                <span class="help-block">Selecteer een .docx-document van maximaal 5 MB</span>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="file">Bestand</label>
+                                <div class="col-md-4">
+                                    <input id="file" name="file" class="input-file" type="file" required>
+                                    <span class="help-block">Selecteer een .docx-document van maximaal 5 MB</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="submit"></label>
-                            <div class="col-md-4">
-                                <button id="submit" name="submit" type="submit" class="btn btn-primary">Uploaden</button>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="submit"></label>
+                                <div class="col-md-4">
+                                    <button id="submit" name="submit" type="submit" class="btn btn-primary">Uploaden</button>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
+                        </fieldset>
+                    </form>
+                <?php } ?>
 
             </div>
         </div>

@@ -14,7 +14,8 @@ body.signin {
 }
 
 .form-signin {
-    max-width: 330px;
+    max-width: 350px;
+    min-width: 350px;
     padding: 15px;
     margin: 0 auto;
     position: absolute;
@@ -175,4 +176,9 @@ input.input-file {
 
 .control-label {
     text-align: left !important;
+}
+
+.overwrite-warning {
+    font-weight: normal !important;
+    color: #FFA500 !important;
 }

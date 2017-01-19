@@ -28,27 +28,50 @@
 <body class="signin">
     <div class="container signin-container">
 
-        <form class="form-signin">
+
+        <form class="form-signin" method="post" action="/login/">
+
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <img src="/assets/img/logo.svg" alt="Hofstad" class="img-rounded img-responsive"><br><br>
                 </div>
             </div>
-            <div class="row"></div>
-            <label for="inputEmail" class="sr-only">Emailadres</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Emailadres" required autofocus>
-            <label for="inputPassword" class="sr-only">Wachtwoord</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Onthouden
-                </label>
+            <div class="row">
+                <?php
+                if($_GET["logged_out"] == "true") {
+                    echo '<div class="alert alert-success alert-dismissable" role="alert">
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <strong>Uitgelogd.</strong> Je bent uitgelogd.
+                      </div>';
+                } else if ($_GET["failed"] == "true") {
+                    echo '<div class="alert alert-danger alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <b>Inloggen mislukt.</b> Probeer het opnieuw of vraag je docent.
+                      </div>';
+                } else if ($_GET["registration"] == "true") {
+                    echo '<div class="alert alert-success alert-dismissable" role="alert">
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <strong>Gelukt.</strong> Je bent geregistreerd.
+                      </div>';
+                }
+                ?>
             </div>
+            <label for="username" class="sr-only">Gebruikersnaam</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Gebruikersnaam" required autofocus>
+            <label for="password" class="sr-only">Wachtwoord</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Wachtwoord" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
+            <a class="btn btn-lg btn-primary btn-block" href="/register/">Registreren</a>
         </form>
 
     </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
 

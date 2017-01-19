@@ -17,9 +17,9 @@
         return $database->query($querystring)->fetchAll();
     }
 
-    function getAssignment($database, $assignment_id){
+    function getAssignment($database, $assignment_id, $class_id){
         $quoted_id = $database->quote($assignment_id);
-        $quoted_class = $database->quote($_SESSION['class']);
+        $quoted_class = $database->quote($class_id);
 
         $querystring = "SELECT title, IF(NOW() BETWEEN assignments_class.start_date AND assignments_class.end_date,
             'Open', 'Gesloten') AS status, DATE_FORMAT(end_date, '%d %M %Y %H:%i') as deadline
@@ -29,5 +29,15 @@
                         AND assignments.id = $quoted_id";
 
         return $database->query($querystring)->fetchAll()[0];
+    }
+
+    function generateTabs($bp, $active = 'Info'){
+        return $bp->tabs(array(
+            'Info' => '#info',
+            'Inzending' => '#submission',
+        ), array(
+            'active' => $active,
+            'toggle' => "tab",
+        ));
     }
 

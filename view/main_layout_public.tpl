@@ -29,7 +29,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <?php $this->insert('header') ?>
+        <?php $this->insert('header_public') ?>
     </div>
 </nav>
 
