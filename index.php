@@ -93,6 +93,8 @@
         $new_filename = uniqid();
         $db_filename = $new_filename . "." . $file->getExtension();
 
+        $originalfilename = $file->getNameWithExtension();
+
         $file->setName($new_filename);
 
         $file->addValidations(array(
@@ -107,7 +109,7 @@
         try {
             // Success!
             $file->upload();
-            $rows_affected = setSubmission(getDatabase(), $_SESSION['user'], $assignment_id, $db_filename);
+            $rows_affected = setSubmission(getDatabase(), $_SESSION['user'], $assignment_id, $originalfilename, $db_filename);
             if ($rows_affected){
                 getRedirect("/assignment/".$assignment_id."/?upload=success");
             } else {

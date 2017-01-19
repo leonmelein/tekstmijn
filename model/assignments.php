@@ -12,12 +12,7 @@
                             WHERE students.id = $quoted_id
                             AND students.class_id = assignments_class.class_id
                             AND assignments_class.assignment_id = assignments.id
-                        ) AS classwork
-                        WHERE id NOT IN (
-                          SELECT assignment_id
-                          FROM submissions
-                          WHERE student_id = $quoted_id
-                        )";
+                        ) AS classwork";
 
         return $database->query($querystring)->fetchAll();
     }

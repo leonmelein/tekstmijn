@@ -53,7 +53,7 @@
                     echo sprintf($submission_format,
                         $submission['time'],
                         $submission['file'],
-                        $submission['file']);
+                        $submission['original_file']);
                 }
                 ?>
 

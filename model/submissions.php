@@ -1,7 +1,7 @@
 <?php
 use Carrooi\DocxExtractor\DocxExtractor;
 
-function setSubmission($database, $student_id, $assignment_id, $file){
+function setSubmission($database, $student_id, $assignment_id, $originalfilename, $file){
     $extractor = new DocxExtractor;
     $text = $extractor->extractText('/volume1/hofstad/assets/submissions/' . $file);
 
@@ -9,6 +9,7 @@ function setSubmission($database, $student_id, $assignment_id, $file){
                                         ["student_id" => $student_id,
                                         "assignment_id" => $assignment_id,
                                         "file" => $file,
+                                        "original_file" => $originalfilename,
                                         "text" => $text
                                         ]
     );
@@ -18,7 +19,7 @@ function setSubmission($database, $student_id, $assignment_id, $file){
 function getSubmission($database, $student_id, $assignment_id){
     $quoted_student = $database->quote($student_id);
     $quoted_assignment = $database->quote($assignment_id);
-    $query = "SELECT DATE_FORMAT(time, '%d %M %Y, %H:%i') AS time, file
+    $query = "SELECT DATE_FORMAT(time, '%d %M %Y, %H:%i') AS time, file, original_file
               FROM submissions
               WHERE student_id = $quoted_student
               AND assignment_id = $quoted_assignment";
