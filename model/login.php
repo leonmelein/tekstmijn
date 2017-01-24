@@ -18,21 +18,25 @@ function hash_password($password){
     $cost = 10;
     $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), "+", ".");
     $salt = sprintf("$2a$%02d$", $cost) . $salt;
-
     $hash = crypt($password, $salt);
     return $hash;
 }
 
-function set_initial_password($database, $username, $hash){
-    $rows_affected = $database->update("students",
-        ["password" => hash_password($hash)],
-        ["AND" =>
-            [
-                "id" => $username,
-                "password" => null
+function set_initial_password($database, $username, $password){
+    $rows_affected = 0;
+
+    if (strlen($password) > 0){
+        $rows_affected = $database->update("students",
+            ["password" => hash_password($password)],
+            ["AND" =>
+                [
+                    "id" => $username,
+                    "password" => null
+                ]
             ]
-        ]
-    );
+        );
+    }
+
 
     return $rows_affected;
 }

@@ -1,4 +1,4 @@
-<?php $this->layout('main_layout_public', ['title' => $title]); ?>
+<?php $this->layout('main_layout_public', ['title' => $title, 'pageJS' => $page_js]); ?>
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -18,7 +18,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h1 class="page_title">Registreren</h1>
-        <form class="form-horizontal" method="post" action="/register/">
+        <form class="form-horizontal" id="register" method="post" action="/register/" onsubmit="return validate_password()">
             <fieldset>
 
                 <!-- Text input-->
@@ -35,6 +35,14 @@
                     <label class="col-md-4 control-label" for="password">Wachtwoord</label>
                     <div class="col-md-4">
                         <input id="password" name="password" type="password" placeholder="Wachtwoord" class="form-control input-md" required="">
+                    </div>
+                </div>
+
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="password_confirm"></label>
+                    <div class="col-md-4">
+                        <input id="password_confirm" name="password_confirm" type="password" placeholder="Bevestig wachtwoord" class="form-control input-md" required="">
                     </div>
                 </div>
 

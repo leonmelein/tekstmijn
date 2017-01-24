@@ -42,8 +42,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/vendor/jquery/dist/jquery.min.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    <?php echo $pageJS; ?>
-</script>
+<script src="/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/vendor/application/register_validate.js"></script>
 </body>
 </html>

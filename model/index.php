@@ -18,15 +18,6 @@ function generateTable($bp, $columns, $data, $format = "", $classes = "class=res
                                                     $item['id'],
                                                     $item[$column[1]]
             ));
-//            if (strcmp($format, "")){
-//                $table .= $bp->table->cell('', $item[$column[1]]);
-//            } else {
-//                $table .= sprintf(
-//                    $format,
-//                    $item['id'],
-//                    $bp->table->cell('', $item[$column[1]])
-//                );
-//            }
         }
     }
 
@@ -40,7 +31,8 @@ function generateMenu($bp, $active){
                        <div class="panel-body">%s</div>
                     </div>';
 
-    $menu_options = ["Opdrachten" => "/assignments/", "Vragenlijsten" => "/questionnaires/"];
+    #$menu_options = ["Opdrachten" => "/assignment/", "Vragenlijsten" => "/questionnaire/"];
+    $menu_options = ["Opdrachten" => "/assignment/"];
     return sprintf($menu_panel, $bp->pills($menu_options, $active));
 }
 

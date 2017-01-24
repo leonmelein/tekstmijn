@@ -1,12 +1,13 @@
 <?php
-/**
- * CONTROLLER
- */
+    /**
+     * CONTROLLER
+     */
     require("vendor/autoload.php");
     require("model/index.php");
     require("model/assignments.php");
     require("model/submissions.php");
     require("model/login.php");
+    require("model/questionnaires.php");
     use BootPress\Bootstrap\v3\Component as Bootstrap;
 
     function getDatabase(){
@@ -25,6 +26,7 @@
         $templates = new League\Plates\Engine('view', 'tpl');
         $templates->addFolder("login", "view/login");
         $templates->addFolder("assignments", "view/assignments");
+        $templates->addFolder("questionnaires", "view/questionnaires");
         return $templates;
     }
 
@@ -40,6 +42,14 @@
 
     $router = new \Bramus\Router\Router();
 
+
+    /*
+     * Authentication
+     * - Provides routes for logging on and off, as well as registering a new account.
+     */
+
+    //  Authentication check: check if each request has a user ID set in session.
+    //  TODO: use tokens?
     $router->before('GET|POST', '/assignment/.*', function() {
         session_start();
         if (!isset($_SESSION['user'])) {
@@ -49,7 +59,7 @@
     });
 
     $router->get("/", function(){
-        getRedirect("/login");
+            getRedirect("/login");
     });
 
     $router->get("/login/", function (){
@@ -76,6 +86,24 @@
             getRedirect("/login/?logged_out=true");
         });
 
+    $router->get("/register/", function (){
+        echo getTemplates()->render("login::register", ["title" => "Hofstad | Registreren"]);
+    });
+
+    $router->post("/register/", function(){
+        $db = getDatabase();
+        if(set_initial_password($db, $_POST["username"], $_POST["password"])){
+            getRedirect("/login/?registration=true");
+        } else {
+            getRedirect("/register/?failed=true");
+        }
+    });
+
+    /*
+     * Assignments
+     *      Provides access to assignments and enables submission.
+     */
+
     $router->get("/assignment/", function (){
                 $bp = getBootstrap();
                 session_start();
@@ -91,7 +119,7 @@
 
                 // Generate page
                 echo getTemplates()->render("assignments::index", [
-                    "title" => "Hofstad | Overzicht",
+                    "title" => "Hofstad | Opdrachten",
                     "page_title" => "Opdrachten",
                     "table" => generateTable($bp, $columns, $data, $link),
                     "menu" => $menu,
@@ -99,7 +127,7 @@
                 ]);
             });
 
-    $router->get("/assignment/(\d+)", function ($assignment_id) {
+    $router->get("/assignment/(\d+)/", function ($assignment_id) {
         session_start();
 
         $bp = getBootstrap();
@@ -189,17 +217,59 @@
         }
     });
 
-    $router->get("/register/", function (){
-        echo getTemplates()->render("login::register", ["title" => "Hofstad | Registreren"]);
+    /*
+     * Questionnaires
+     *      Provides access to questionnaires
+     */
+    $router->get("/questionnaire/", function (){
+        $bp = getBootstrap();
+        session_start();
+
+        // Get data
+        $data = getQuestionnaires(getDatabase(), $_SESSION['class']);
+        $columns = [["#", "id"], ["Titel", "name"]];    // TODO: rename name column to title
+
+        // Generate menu
+        $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
+        $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Vragenlijsten" => "#"]);
+        $link = '<a href="%s/">%s</a>';
+
+        // Generate page
+        echo getTemplates()->render("questionnaires::index", [
+            "title" => "Hofstad | Vragenlijsten",
+            "page_title" => "Vragenlijsten",
+            "table" => generateTable($bp, $columns, $data, $link),
+            "menu" => $menu,
+            "breadcrumbs" => $breadcrumbs,
+        ]);
     });
 
-    $router->post("/register/", function(){
-        $db = getDatabase();
-        if(set_initial_password($db, $_POST["username"], $_POST["password"])){
-            getRedirect("/login/?registration=true");
-        } else {
-            getRedirect("/register/?failed=true");
-        }
+    $router->get("/questionnaire/(\d+)/", function ($questionnaire_id){
+        $bp = getBootstrap();
+        session_start();
+
+        // Get data
+        $data = getAllQuestions(getDatabase(), $questionnaire_id);
+        $columns = [
+            ["#", "id"],
+            ["Vraag", "question"]
+        ];    // TODO: rename name column to title
+
+        // Generate menu
+        $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
+        $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#",
+            "Vragenlijsten" => "#", "Vragenlijst 1" => "#"]);
+        $link = '<!-- %s -->%s';
+
+        // Generate page
+        echo getTemplates()->render("questionnaires::index", [
+            "title" => "Hofstad | Vragenlijst 1",
+            "page_title" => "Vragenlijst 1",
+            "table" => generateTable($bp, $columns, $data, $link),
+            "menu" => $menu,
+            "breadcrumbs" => $breadcrumbs,
+        ]);
+
     });
 
     $router->run();

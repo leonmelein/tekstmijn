@@ -183,6 +183,12 @@ input.input-file {
     color: #FFA500 !important;
 }
 
+.error {
+    margin-top: 10px;
+    margin-bottom: 0px !important;
+    color: #7c2128;
+}
+
 .show  {
     display: inherit;
 }

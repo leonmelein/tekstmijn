@@ -66,7 +66,7 @@
                     <a class="btn btn-default" id="inzendingoverschrijven" href="#" role="button">Inzending overschrijven</a>
                 </div>
                 <div id="alertshow" class="hide">
-                    <div class="alert alert-warning" role="alert"><strong>Weet je het zeker?</strong> Je mag je opdracht maar 1 keer inleveren. Wanneer je de huidige inzending overschrijft, zal je docent controleren of je dit niet onrechtmatig hebt gedaan. De inleverdatum en tijd worden altijd opgeslagen. Vraag voor de zekerheid je docent voordat je verder gaat.</div>
+                    <div class="alert alert-warning" role="alert"><strong>Weet je het zeker?</strong> Je mag je opdracht maar 1 keer inleveren. Wanneer je de huidige inzending overschrijft, zal je docent controleren of je dit niet onrechtmatig hebt gedaan. De inleverdatum en -tijd worden altijd opgeslagen. Vraag voor de zekerheid je docent voordat je verder gaat.</div>
                     <a class="btn btn-default" id="gaverder" href="#" role="button">Ga verder</a>
                 </div>
                 <div id="fromoverschrijven" class="hide">
@@ -74,7 +74,7 @@
                         <fieldset>
                             <div class="form-group" style="display: <?php echo ($overwrite == 1 ? 'inherit;' : 'none;'); ?>">
                                 <div class="col-md-6">
-                                    <p class="form-control-static overwrite-warning"><span class="glyphicon glyphicon-info-sign"></span> Je eerdere inzending wordt overschreven. De inleverdatum en tijd worden opgeslagen bij het inzenden.</p>
+                                    <p class="form-control-static overwrite-warning"><span class="glyphicon glyphicon-info-sign"></span> Je eerdere inzending wordt overschreven. De inleverdatum en -tijd worden opgeslagen bij het inzenden.</p>
                                 </div>
                             </div>
                             <div class="form-group">
