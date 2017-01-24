@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
     </button>
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/assignment/">
             <img alt="Brand" src="/assets/img/logo.svg"> Hofstad
         </a>
     </div>
