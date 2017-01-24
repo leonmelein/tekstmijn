@@ -115,7 +115,20 @@
         $page_js = "";
         $overwrite = 0;
         if($submission != null){
-            $page_js = "$('a[href=\"#submission\"]').tab('show');";
+            $page_js = "$('a[href=\"#submission\"]').tab('show');
+            $(\"#inzendingoverschrijven\").click(function (e) {
+            $(\"#togglealert\").removeClass(\"show\");
+            $(\"#togglealert\").addClass(\"hide\");
+            $(\"#alertshow\").removeClass(\"hide\");
+            $(\"#alertshow\").addClass(\"show\");
+            });
+            
+            $(\"#gaverder\").click(function (e) {
+            $(\"#alertshow\").removeClass(\"show\");
+            $(\"#alertshow\").addClass(\"hide\");
+            $(\"#fromoverschrijven\").removeClass(\"hide\");
+            $(\"#fromoverschrijven\").addClass(\"show\");
+            });";
             $overwrite = 1;
         }
 

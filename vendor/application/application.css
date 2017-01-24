@@ -182,3 +182,11 @@ input.input-file {
     font-weight: normal !important;
     color: #FFA500 !important;
 }
+
+.show  {
+    display: inherit;
+}
+
+.hide {
+    display: none;
+}
