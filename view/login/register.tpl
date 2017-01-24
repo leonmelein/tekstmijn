@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="username">Leerlingnummer</label>
                     <div class="col-md-4">
-                        <input id="username" name="username" type="text" placeholder="16001" class="form-control input-md" required="" autofocus>
+                        <input id="username" name="username" type="text" placeholder="Leerlingnummer" class="form-control input-md" required="" autofocus>
 
                     </div>
                 </div>
