@@ -58,9 +58,11 @@
                 }
                 ?>
 
-                <?php if ($status == "Open"){ ?>
                 <h4 class="assignment_info">Nieuwe inzending</h4>
-                <p>Heb je een verkeerd document geüpload? Je kunt je inzending overschrijven door hieronder te klikken op 'Inzending overschrijven'.</p>
+                    <?php if($status == "Gesloten"){?>
+                        <p class="form-control-static error"><span class="glyphicon glyphicon glyphicon-minus-sign"></span> <stong>De opdracht is gesloten.</stong> Je bent te laat met inleveren.</p>
+                    <?php } ?>
+                    <p>Heb je een verkeerd document geüpload? Je kunt je inzending overschrijven door hieronder te klikken op 'Inzending overschrijven'.</p>
                 <br/>
                 <div id="togglealert" class="show">
                     <a class="btn btn-default" id="inzendingoverschrijven" href="#" role="button">Inzending overschrijven</a>
@@ -73,7 +75,7 @@
                     <form class="form-horizontal" action="submit/" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <div class="form-group" style="display: <?php echo ($overwrite == 1 ? 'inherit;' : 'none;'); ?>">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <p class="form-control-static overwrite-warning"><span class="glyphicon glyphicon-info-sign"></span> Je eerdere inzending wordt overschreven. De inleverdatum en -tijd worden opgeslagen bij het inzenden.</p>
                                 </div>
                             </div>
@@ -93,8 +95,6 @@
                         </fieldset>
                     </form>
                 </div>
-                <?php } ?>
-
             </div>
         </div>
     </div>
