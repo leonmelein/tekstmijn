@@ -26,7 +26,8 @@ function updateSubmission($database, $student_id, $assignment_id, $originalfilen
     $rows_affected = $database->update("submissions",
         ["file" => $file,
             "original_file" => $originalfilename,
-            "text" => $text
+            "text" => $text,
+            "submission_count[+]" => 1
         ], ["AND" => [
             "student_id" => $student_id,
             "assignment_id" => $assignment_id

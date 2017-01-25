@@ -127,9 +127,8 @@
                 ]);
             });
 
-    $router->get("/assignment/(\d+)/", function ($assignment_id) {
+    $router->get("/assignment/(.*)/", function ($assignment_id) {
         session_start();
-
         $bp = getBootstrap();
         $database = getDatabase();
         // Generate menu
@@ -173,7 +172,7 @@
         ]);
     });
 
-    $router->post("/assignment/(\d+)/submit", function ($assignment_id){
+    $router->post("/assignment/(\w+)/submit", function ($assignment_id){
         session_start();
         $db = getDatabase();
 
