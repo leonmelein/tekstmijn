@@ -58,7 +58,7 @@
                 ?>
             </div>
             <label for="username" class="sr-only">Gebruikersnaam</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="160001" aria-label="Gebruikersnaam" required autofocus>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Leerlingnummer" aria-label="Leerlingnummer" required autofocus>
             <label for="password" class="sr-only">Wachtwoord</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="Wachtwoord" aria-label="Wachtwoord" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit" aria-label="Inloggen">Inloggen</button>
