@@ -136,26 +136,13 @@
         $data = getAssignment($database, $assignment_id, $_SESSION["class"]);
         $submission = getSubmission($database, $_SESSION["user"], $assignment_id);
 
-        $breadcrumbs = generateBreadcrumbs($bp, ["L&eacute;on Melein" => "#", "Opdrachten" => "../", $data['title'] => "#"]);
+        $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Opdrachten" => "../", $data['title'] => "#"]);
         $tabs = generateTabs($bp);
 
         $page_js = "";
         $overwrite = 0;
         if($submission != null){
-            $page_js = "$('a[href=\"#submission\"]').tab('show');
-            $(\"#inzendingoverschrijven\").click(function (e) {
-            $(\"#togglealert\").removeClass(\"show\");
-            $(\"#togglealert\").addClass(\"hide\");
-            $(\"#alertshow\").removeClass(\"hide\");
-            $(\"#alertshow\").addClass(\"show\");
-            });
-            
-            $(\"#gaverder\").click(function (e) {
-            $(\"#alertshow\").removeClass(\"show\");
-            $(\"#alertshow\").addClass(\"hide\");
-            $(\"#fromoverschrijven\").removeClass(\"hide\");
-            $(\"#fromoverschrijven\").addClass(\"show\");
-            });";
+            $page_js = "/vendor/application/assignment_submitted.js";
             $overwrite = 1;
         }
 
@@ -172,7 +159,7 @@
         ]);
     });
 
-    $router->post("/assignment/(\w+)/submit", function ($assignment_id){
+    $router->post("/assignment/(.*)/submit", function ($assignment_id){
         session_start();
         $db = getDatabase();
 

@@ -158,11 +158,13 @@ body.signin {
 h1.page_title {
     margin-top: 0 !important;
     margin-bottom: 20px;
+    text-rendering: optimizeSpeed;
 }
 
 h4.assignment_info {
     margin-top: 20px;
     margin-bottom: 10px;
+    text-rendering: optimizeSpeed;
 }
 
 input.input-file {

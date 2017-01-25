@@ -42,8 +42,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/vendor/jquery/dist/jquery.min.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    <?php echo $pageJS; ?>
-</script>
+<script src="<?php echo $pageJS; ?>"></script>
 </body>
 </html>

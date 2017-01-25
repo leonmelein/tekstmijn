@@ -34,35 +34,35 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <img src="/assets/img/logo.svg" alt="Hofstad" class="img-rounded img-responsive"><br><br>
+                    <img src="/assets/img/logo.svg" alt="Hofstad" class="img-rounded img-responsive" height="350" width="350"><br><br>
                 </div>
             </div>
             <div class="row">
                 <?php
                 if($_GET["logged_out"] == "true") {
                     echo '<div class="alert alert-success alert-dismissable" role="alert">
-                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Sluiten"><span aria-hidden="true">&times;</span></button>
                            <strong>Uitgelogd.</strong> Je bent uitgelogd.
                       </div>';
                 } else if ($_GET["failed"] == "true") {
                     echo '<div class="alert alert-danger alert-dismissable" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Sluiten"><span aria-hidden="true">&times;</span></button>
                         <b>Inloggen mislukt.</b> Probeer het opnieuw of vraag je docent.
                       </div>';
                 } else if ($_GET["registration"] == "true") {
                     echo '<div class="alert alert-success alert-dismissable" role="alert">
-                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Sluiten"><span aria-hidden="true">&times;</span></button>
                            <strong>Gelukt.</strong> Je bent geregistreerd.
                       </div>';
                 }
                 ?>
             </div>
             <label for="username" class="sr-only">Gebruikersnaam</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="Gebruikersnaam" required autofocus>
+            <input type="text" name="username" id="username" class="form-control" placeholder="160001" aria-label="Gebruikersnaam" required autofocus>
             <label for="password" class="sr-only">Wachtwoord</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="Wachtwoord" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
-            <a class="btn btn-lg btn-primary btn-block" href="/register/">Registreren</a>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Wachtwoord" aria-label="Wachtwoord" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" aria-label="Inloggen">Inloggen</button>
+            <a class="btn btn-lg btn-primary btn-block" href="/register/" aria-label="Registreren">Registreren</a>
         </form>
 
     </div> <!-- /container -->

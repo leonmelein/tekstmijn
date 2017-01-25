@@ -18,7 +18,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h1 class="page_title">Registreren</h1>
-        <form class="form-horizontal" id="register" method="post" action="/register/" onsubmit="return validate_password()">
+        <form class="form-horizontal" id="register" method="post" action="/register/">
             <fieldset>
 
                 <!-- Text input-->
