@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Upload\\' => array($vendorDir . '/codeguy/upload/src/Upload'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
+    'Medoo\\' => array($vendorDir . '/catfan/medoo/src'),
     'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'Carrooi\\DocxExtractor\\' => array($vendorDir . '/carrooi/docx-extractor/src'),
     'BootPress\\Validator\\' => array($vendorDir . '/bootpress/validator/src'),

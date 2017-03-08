@@ -12,6 +12,7 @@
                             WHERE students.id = $quoted_id
                             AND students.class_id = assignments_class.class_id
                             AND assignments_class.assignment_id = assignments.id
+                            AND assignments_class.start_date <= NOW()
                         ) AS classwork";
 
         return $database->query($querystring)->fetchAll();

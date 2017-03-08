@@ -8,14 +8,21 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'c7359326b6707d98bdc176bf9ddeaebf' => __DIR__ . '/..' . '/catfan/medoo/medoo.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'U' => 
+        array (
+            'Upload\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\HttpFoundation\\' => 33,
+        ),
+        'M' => 
+        array (
+            'Medoo\\' => 6,
         ),
         'L' => 
         array (
@@ -37,6 +44,10 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
     );
 
     public static $prefixDirsPsr4 = array (
+        'Upload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeguy/upload/src/Upload',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -44,6 +55,10 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Medoo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/catfan/medoo/src',
         ),
         'League\\Plates\\' => 
         array (
@@ -80,13 +95,6 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
     );
 
     public static $prefixesPsr0 = array (
-        'U' => 
-        array (
-            'Upload' => 
-            array (
-                0 => __DIR__ . '/..' . '/codeguy/upload/src',
-            ),
-        ),
         'P' => 
         array (
             'Pimple' => 
@@ -139,6 +147,7 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'League\\Plates\\Template\\Functions' => __DIR__ . '/..' . '/league/plates/src/Template/Functions.php',
         'League\\Plates\\Template\\Name' => __DIR__ . '/..' . '/league/plates/src/Template/Name.php',
         'League\\Plates\\Template\\Template' => __DIR__ . '/..' . '/league/plates/src/Template/Template.php',
+        'Medoo\\Medoo' => __DIR__ . '/..' . '/catfan/medoo/src/Medoo.php',
         'Pimple\\Container' => __DIR__ . '/..' . '/pimple/pimple/src/Pimple/Container.php',
         'Pimple\\ServiceProviderInterface' => __DIR__ . '/..' . '/pimple/pimple/src/Pimple/ServiceProviderInterface.php',
         'Pimple\\Tests\\Fixtures\\Invokable' => __DIR__ . '/..' . '/pimple/pimple/src/Pimple/Tests/Fixtures/Invokable.php',
@@ -210,11 +219,14 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
         'Symfony\\Component\\HttpFoundation\\StreamedResponse' => __DIR__ . '/..' . '/symfony/http-foundation/StreamedResponse.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Upload\\Autoloader' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Autoloader.php',
-        'Upload\\Exception\\UploadException' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Exception/UploadException.php',
+        'Upload\\Exception' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Exception.php',
         'Upload\\File' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/File.php',
-        'Upload\\Storage\\Base' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Storage/Base.php',
+        'Upload\\FileInfo' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/FileInfo.php',
+        'Upload\\FileInfoInterface' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/FileInfoInterface.php',
+        'Upload\\StorageInterface' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/StorageInterface.php',
         'Upload\\Storage\\FileSystem' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Storage/FileSystem.php',
-        'Upload\\Validation\\Base' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Base.php',
+        'Upload\\ValidationInterface' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/ValidationInterface.php',
+        'Upload\\Validation\\Dimensions' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Dimensions.php',
         'Upload\\Validation\\Extension' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Extension.php',
         'Upload\\Validation\\Mimetype' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Mimetype.php',
         'Upload\\Validation\\Size' => __DIR__ . '/..' . '/codeguy/upload/src/Upload/Validation/Size.php',

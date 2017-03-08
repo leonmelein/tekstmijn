@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <img src="/assets/img/logo.svg" alt="Hofstad" class="img-rounded img-responsive" height="350" width="350"><br><br>
+                    <img src="/assets/img/logo.svg" alt="Tekstmijn" class="img-rounded img-responsive" height="350" width="350"><br><br>
                 </div>
             </div>
             <div class="row">

@@ -63,7 +63,7 @@
     });
 
     $router->get("/login/", function (){
-        echo getTemplates()->render("login::login", ["title" => "Hofstad | Inloggen"]);
+        echo getTemplates()->render("login::login", ["title" => "Tekstmijn | Inloggen"]);
     });
 
     $router->post("/login/", function (){
@@ -87,7 +87,7 @@
         });
 
     $router->get("/register/", function (){
-        echo getTemplates()->render("login::register", ["title" => "Hofstad | Registreren"]);
+        echo getTemplates()->render("login::register", ["title" => "Tekstmijn | Registreren"]);
     });
 
     $router->post("/register/", function(){
@@ -119,7 +119,7 @@
 
                 // Generate page
                 echo getTemplates()->render("assignments::index", [
-                    "title" => "Hofstad | Opdrachten",
+                    "title" => "Tekstmijn | Opdrachten",
                     "page_title" => "Opdrachten",
                     "table" => generateTable($bp, $columns, $data, $link),
                     "menu" => $menu,
@@ -146,7 +146,7 @@
             $overwrite = 1;
         }
 
-        echo getTemplates()->render("assignments::assignment", ["title" => sprintf("Hofstad | Opdracht: %s", strtolower($data['title'])),
+        echo getTemplates()->render("assignments::assignment", ["title" => sprintf("Tekstmijn | Opdracht: %s", strtolower($data['title'])),
                                                                 "breadcrumbs" => $breadcrumbs,
                                                                 "menu" => $menu,
                                                                 "page_title" => $data['title'],
@@ -222,7 +222,7 @@
 
         // Generate page
         echo getTemplates()->render("questionnaires::index", [
-            "title" => "Hofstad | Vragenlijsten",
+            "title" => "Tekstmijn | Vragenlijsten",
             "page_title" => "Vragenlijsten",
             "table" => generateTable($bp, $columns, $data, $link),
             "menu" => $menu,
@@ -255,6 +255,52 @@
             "menu" => $menu,
             "breadcrumbs" => $breadcrumbs,
         ]);
+
+    });
+
+    $router->get('/megaupload', function (){
+       echo getTemplates()->render("megaupload");
+    });
+
+    $router->post('/megaupload/', function (){
+       $students = $_POST["student"];
+       $assignments = $_POST["assignment"];
+
+       $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
+       $file = new \Upload\File('file', $storage);
+       $file->addValidations(array(
+            // Ensure file is of type "image/png"
+            new \Upload\Validation\Mimetype(array('application/vnd.openxmlformats-officedocument.wordprocessingml.document')),
+
+            // Ensure file is no larger than 5M (use "B", "K", M", or "G")
+            new \Upload\Validation\Size('5M')
+        ));
+
+
+       $original_names = [];
+       $db_filename = [];
+
+       for ($i = 0; $i < count($file); $i++) {
+           $current_file = $file[$i];
+           $original_names[$i] = $current_file->getNameWithExtension();;
+
+           $new_filename = uniqid();
+           $current_file->setName($new_filename);
+           $db_filename[$i] = $new_filename . "." . $current_file->getExtension();
+       };
+
+        // Try to upload file
+        try {
+            $file->upload();
+            for ($i = 0; $i < count($students); $i++) {
+                setSubmission(getDatabase(), $students[$i], $assignments[$i], $original_names[$i], $db_filename[$i]);
+            }
+
+        } catch (\Exception $e) {
+            var_dump(print_r($e));
+        }
+
+       echo "Done!";
 
     });
 
