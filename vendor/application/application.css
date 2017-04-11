@@ -198,3 +198,7 @@ input.input-file {
 .hide {
     display: none;
 }
+
+.review-label {
+    font-weight: normal !important;
+}

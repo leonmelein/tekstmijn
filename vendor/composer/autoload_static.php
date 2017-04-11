@@ -8,6 +8,7 @@ class ComposerStaticInitda1be987d36379087d8fe19e020df1d9
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        'cf5020b74364025fca0e832b740d6050' => __DIR__ . '/..' . '/avbdr/php-bootstrap-form/PFBC/Form.php',
     );
 
     public static $prefixLengthsPsr4 = array (

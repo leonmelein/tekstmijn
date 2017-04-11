@@ -9,6 +9,7 @@
         "codeguy/upload": "dev-master",
         "bootpress/bootstrap": "^1.1",
         "carrooi/docx-extractor": "^1.0",
-        "catfan/medoo": "^1.2"
+        "catfan/medoo": "^1.2",
+        "avbdr/php-bootstrap-form": "^4.0"
     }
 }

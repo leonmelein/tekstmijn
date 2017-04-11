@@ -74,7 +74,9 @@
            $_SESSION['user'] = $_POST['username'];
            $userinfo = getUserInfo($db, $_POST['username']);
            $_SESSION['class'] = $userinfo["class"];
+           $_SESSION['school'] = $userinfo["school"];
            $_SESSION['name'] = $userinfo["name"];
+           $_SESSION['id'] = $userinfo["id"];
            getRedirect("/assignment/");
        } else {
            getRedirect("/login/?failed=true");
@@ -213,7 +215,7 @@
         session_start();
 
         // Get data
-        $data = getQuestionnaires(getDatabase(), $_SESSION['class']);
+        $data = getQuestionnaires(getDatabase(), $_SESSION['school']);
         $columns = [["#", "id"], ["Titel", "name"]];    // TODO: rename name column to title
 
         // Generate menu
@@ -233,28 +235,23 @@
 
     $router->get("/questionnaire/(\d+)/", function ($questionnaire_id){
         $bp = getBootstrap();
+        $db = getDatabase();
         session_start();
-
-        // Get data
-        $data = getAllQuestions(getDatabase(), $questionnaire_id);
-        $columns = [
-            ["#", "id"],
-            ["Vraag", "question"]
-        ];    // TODO: rename name column to title
 
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#",
-            "Vragenlijsten" => "#", "Vragenlijst 1" => "#"]);
-        $link = '<!-- %s -->%s';
+            "Vragenlijsten" => "../../questionnaire/", "Vragenlijst 1" => "#"]);
 
         // Generate page
-        echo getTemplates()->render("questionnaires::index", [
+        echo getTemplates()->render("questionnaires::questionnaire", [
             "title" => "Hofstad | Vragenlijst 1",
             "page_title" => "Vragenlijst 1",
-            "table" => generateTable($bp, $columns, $data, $link),
             "menu" => $menu,
             "breadcrumbs" => $breadcrumbs,
+            "db" => $db,
+            "school" => $_SESSION['school'],
+            "student" => $_SESSION['id']
         ]);
 
     });
