@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc987b87a7cc30d63cf5c9b8166b6277",
+    "content-hash": "82116ffb9111aa52af5f38645818a360",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -549,7 +549,7 @@
                 "upload",
                 "validation"
             ],
-            "time": "2016-03-03 15:58:57"
+            "time": "2016-03-03T15:58:57+00:00"
         },
         {
             "name": "league/plates",

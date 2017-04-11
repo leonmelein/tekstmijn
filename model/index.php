@@ -31,8 +31,8 @@ function generateMenu($bp, $active){
                        <div class="panel-body">%s</div>
                     </div>';
 
-    #$menu_options = ["Opdrachten" => "/assignment/", "Vragenlijsten" => "/questionnaire/"];
-    $menu_options = ["Opdrachten" => "/assignment/"];
+    $menu_options = ["Opdrachten" => "/assignment/", "Vragenlijsten" => "/questionnaire/"];
+    #$menu_options = ["Opdrachten" => "/assignment/"];
     return sprintf($menu_panel, $bp->pills($menu_options, $active));
 }
 

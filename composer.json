@@ -2,13 +2,13 @@
     "name": "rug/hofstad",
     "description": "Stageopdracht MA Information Science",
     "type": "project",
-    "license": "Closed source",
+    "license": "proprietary",
     "require": {
-        "catfan/medoo": "^1.1",
         "league/plates": "^3.3",
         "bramus/router": "^1.1",
         "codeguy/upload": "dev-master",
         "bootpress/bootstrap": "^1.1",
-        "carrooi/docx-extractor": "^1.0"
+        "carrooi/docx-extractor": "^1.0",
+        "catfan/medoo": "^1.2"
     }
 }

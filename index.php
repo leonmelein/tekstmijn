@@ -9,9 +9,10 @@
     require("model/login.php");
     require("model/questionnaires.php");
     use BootPress\Bootstrap\v3\Component as Bootstrap;
+    use Medoo\Medoo as medoo;
 
     function getDatabase(){
-        $database = new medoo([
+        $database = new Medoo([
             'database_type' => 'mysql',
             'database_name' => 'hofstad',
             'server' => 'srv-01.reinardvandalen.nl',
