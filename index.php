@@ -241,12 +241,11 @@
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#",
-            "Vragenlijsten" => "../../questionnaire/", "Vragenlijst 1" => "#"]);
+            "Vragenlijsten" => "../../questionnaire/", "Vragenlijst" => "#"]);
 
         // Generate page
         echo getTemplates()->render("questionnaires::questionnaire", [
-            "title" => "Hofstad | Vragenlijst 1",
-            "page_title" => "Vragenlijst 1",
+        "title" => "Hofstad | Vragenlijst",
             "menu" => $menu,
             "breadcrumbs" => $breadcrumbs,
             "db" => $db,
@@ -256,17 +255,38 @@
 
     });
 
+    $router->post("/questionnaire/(\d+)/saveques", function () {
+        $db = getDatabase();
+
+        session_start();
+        $student_id = $_POST['student_id'];
+        $questionnaire_id = $_POST['questionnaire_id'];
+        $saved_data = $_POST;
+        unset($saved_data['student_id']);
+        unset($saved_data['questionnaire_id']);
+
+        $result = save_questionnaire($db, $saved_data, $student_id, $questionnaire_id);
+            if ($result){
+                getRedirect("../?success=true");
+            } else {
+                getRedirect("../?success=false");
+            }
+    });
+
     $router->get('/megaupload', function (){
        echo getTemplates()->render("megaupload");
     });
 
     $router->post('/megaupload/', function (){
-       $students = $_POST["student"];
-       $assignments = $_POST["assignment"];
+        $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
+        $file = new \Upload\File('file', $storage);
+        $new_filename = uniqid();
+        $db_filename = $new_filename . "." . $file->getExtension();
+        $originalfilename = $file->getNameWithExtension();
 
-       $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
-       $file = new \Upload\File('file', $storage);
-       $file->addValidations(array(
+        $file->setName($new_filename);
+
+        $file->addValidations(array(
             // Ensure file is of type "image/png"
             new \Upload\Validation\Mimetype(array('application/vnd.openxmlformats-officedocument.wordprocessingml.document')),
 
@@ -274,32 +294,15 @@
             new \Upload\Validation\Size('5M')
         ));
 
-
-       $original_names = [];
-       $db_filename = [];
-
-       for ($i = 0; $i < count($file); $i++) {
-           $current_file = $file[$i];
-           $original_names[$i] = $current_file->getNameWithExtension();;
-
-           $new_filename = uniqid();
-           $current_file->setName($new_filename);
-           $db_filename[$i] = $new_filename . "." . $current_file->getExtension();
-       };
-
         // Try to upload file
         try {
+            // Success!
             $file->upload();
-            for ($i = 0; $i < count($students); $i++) {
-                setSubmission(getDatabase(), $students[$i], $assignments[$i], $original_names[$i], $db_filename[$i]);
-            }
-
+            $rows_affected = setSubmission(getDatabase(), $_POST["student"], $_POST["assignment"], $originalfilename, $db_filename);
+            echo "Done!";
         } catch (\Exception $e) {
-            var_dump(print_r($e));
+            print_r($e);
         }
-
-       echo "Done!";
-
     });
 
     $router->run();

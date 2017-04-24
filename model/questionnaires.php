@@ -27,7 +27,7 @@ function generateQuestionnaire($database, $school_id, $student_id) {
     $questions = $database->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
     // Generate form
-    echo "<h4>".$questionnaire['name']."</h4>";
+    echo "<h1>".$questionnaire['name']."</h1>";
     Form::open ($questionnaire['id'], $values = NULL, $attributes = Array("method" => $questionnaire['method'], "action" => $questionnaire['action']));
     Form::Hidden ("student_id", $values = $student_id, $attributes = NULL);
     Form::Hidden ("questionnaire_id", $values = $questionnaire['id'], $attributes = NULL);
@@ -69,7 +69,6 @@ function generateQuestionnaire($database, $school_id, $student_id) {
                 AND questioning.question_id = $question_id_quoted";
 
         $values_db = $database->query($query)->fetchAll(PDO::FETCH_ASSOC)[0]['value'];
-        print_r($values_db);
 
         if ($values_db != ""){
             $attributes_local['value'] = $values_db;
@@ -99,7 +98,8 @@ function save_questionnaire($database, $values, $student_id, $questionnaire_id) 
         ]
     ]);
     foreach( $values as $key => $value){
-        $database->insert("reviewing", [
+
+        $result = $database->insert("questioning", [
             "student_id" => $student_id,
             "questionnaire_id" => $questionnaire_id,
             "question_id" => $key,
@@ -107,7 +107,6 @@ function save_questionnaire($database, $values, $student_id, $questionnaire_id) 
         ]);
     }
 
-    $result = 1;
     return $result;
 }
 
