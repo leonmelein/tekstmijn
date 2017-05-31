@@ -52,11 +52,19 @@
     //  Authentication check: check if each request has a user ID set in session.
     //  TODO: use tokens?
     $router->before('GET|POST', '/assignment/.*', function() {
-        session_start();
-        if (!isset($_SESSION['user'])) {
-            getRedirect("/login");
-            exit();
-        }
+        auth_check();
+    });
+
+    $router->before('GET|POST', '/assignment/', function() {
+        auth_check();
+    });
+
+    $router->before('GET|POST', '/questionnaire/.*', function() {
+        auth_check();
+    });
+
+    $router->before('GET|POST', '/questionnaire/', function() {
+        auth_check();
     });
 
     $router->get("/", function(){

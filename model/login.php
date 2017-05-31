@@ -40,3 +40,11 @@ function set_initial_password($database, $username, $password){
 
     return $rows_affected;
 }
+
+function auth_check(){
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        getRedirect("/login");
+        exit();
+    }
+}
