@@ -202,3 +202,7 @@ input.input-file {
 .review-label {
     font-weight: normal !important;
 }
+
+.questionnaire {
+    padding-bottom: 20px;
+}

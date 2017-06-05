@@ -4,20 +4,39 @@ function getStudents($database){
     return $database->select("students", ["id", "firstname", "lastname"]);
 }
 
-function generateTable($bp, $columns, $data, $format = "", $classes = "class=responsive hover"){
+function generateTable($bp, $columns, $data, $options = null, $format = "", $classes = "class=responsive hover"){
     $table = $bp->table->open($classes);
     $table .= $bp->table->head();
     foreach ($columns as $column){
         $table .= $bp->table->cell('', $column[0]);
     }
 
+    if (isset($options)){
+        foreach ($options as $option){
+            $table .= $bp->table->cell('', $option[2]);
+        }
+    }
+
     foreach ($data as $item) {
         $table .= $bp->table->row();
+
         foreach ($columns as $column) {
-            $table .= $bp->table->cell('', sprintf($format,
-                                                    $item['id'],
-                                                    $item[$column[1]]
-            ));
+            if(empty($format)){
+                $table .= $bp->table->cell('', $item[$column[1]]);
+            } else {
+                $table .= $bp->table->cell('', sprintf($format,
+                    $item['id'],
+                    $item[$column[1]]
+                ));
+            }
+
+        }
+
+        if (isset($options)) {
+            foreach ($options as $option) {
+                $table .= $bp->table->cell('', sprintf($option[0], $item["id"], $item["id"]
+                ));
+            }
         }
     }
 
@@ -31,8 +50,8 @@ function generateMenu($bp, $active){
                        <div class="panel-body">%s</div>
                     </div>';
 
-    $menu_options = ["Opdrachten" => "/assignment/", "Vragenlijsten" => "/questionnaire/"];
-    #$menu_options = ["Opdrachten" => "/assignment/"];
+//    $menu_options = ["Opdrachten" => "/assignment/", "Vragenlijsten" => "/questionnaire/"];
+    $menu_options = ["Vragenlijsten" => "/questionnaire/"];
     return sprintf($menu_panel, $bp->pills($menu_options, $active));
 }
 

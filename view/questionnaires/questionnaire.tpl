@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row questionnaire">
     <div class="col-md-3">
         <?php echo $menu; ?>
     </div>

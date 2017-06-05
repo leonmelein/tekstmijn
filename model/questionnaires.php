@@ -9,6 +9,10 @@ function getQuestionnaires($database, $schoolid){
     return $database->query($querystring)->fetchAll();
 }
 
+function getQuestionnaireName($database, $questionnaire_id){
+    return $database->get("questionnaires", "name", ["id" => $questionnaire_id]);
+}
+
 function generateQuestionnaire($database, $school_id, $student_id) {
     $student_id_quoted = $database->quote($student_id);
     $school_id_quoted = $database->quote($school_id);

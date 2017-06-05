@@ -79,13 +79,13 @@
         $db = getDatabase();
        if(check_login($db, $_POST['username'], $_POST['password'])){
            session_start();
-           $_SESSION['user'] = $_POST['username'];
            $userinfo = getUserInfo($db, $_POST['username']);
+           $_SESSION['user'] = $_POST['username'];
            $_SESSION['class'] = $userinfo["class"];
            $_SESSION['school'] = $userinfo["school"];
            $_SESSION['name'] = $userinfo["name"];
            $_SESSION['id'] = $userinfo["id"];
-           getRedirect("/assignment/");
+           getRedirect("/questionnaire/");
        } else {
            getRedirect("/login/?failed=true");
        }
@@ -127,12 +127,15 @@
                 $menu = generateMenu($bp, ["active" => "Opdrachten", "align" => "stacked"]);
                 $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Opdrachten" => "#"]);
                 $link = '<a href="%s/">%s</a>';
+                $options = [
+                    ["<a class='' href='%s/'><i class='glyphicon glyphicon-pencil'></i> Inleveren</a>"],
+                ];
 
                 // Generate page
                 echo getTemplates()->render("assignments::index", [
                     "title" => "Tekstmijn | Opdrachten",
                     "page_title" => "Opdrachten",
-                    "table" => generateTable($bp, $columns, $data, $link),
+                    "table" => generateTable($bp, $columns, $data, $options, $link),
                     "menu" => $menu,
                     "breadcrumbs" => $breadcrumbs,
                 ]);
@@ -224,18 +227,22 @@
 
         // Get data
         $data = getQuestionnaires(getDatabase(), $_SESSION['school']);
-        $columns = [["#", "id"], ["Titel", "name"]];    // TODO: rename name column to title
+        $columns = [["Titel", "name"]];    // TODO: rename name column to title
 
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Vragenlijsten" => "#"]);
         $link = '<a href="%s/">%s</a>';
+        $options = [
+            ["<a class='' href='%s/'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
+        ];
+
 
         // Generate page
         echo getTemplates()->render("questionnaires::index", [
             "title" => "Tekstmijn | Vragenlijsten",
             "page_title" => "Vragenlijsten",
-            "table" => generateTable($bp, $columns, $data, $link),
+            "table" => generateTable($bp, $columns, $data, $options, $link),
             "menu" => $menu,
             "breadcrumbs" => $breadcrumbs,
         ]);
@@ -246,10 +253,13 @@
         $db = getDatabase();
         session_start();
 
+        $q_name = getQuestionnaireName($db, $questionnaire_id);
+
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#",
-            "Vragenlijsten" => "../../questionnaire/", "Vragenlijst" => "#"]);
+            "Vragenlijsten" => "../../questionnaire/",
+            sprintf("%s", $q_name)=> "#"]);
 
         // Generate page
         echo getTemplates()->render("questionnaires::questionnaire", [
