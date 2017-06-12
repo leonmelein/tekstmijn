@@ -4,7 +4,7 @@ use Carrooi\DocxExtractor\DocxExtractor;
 
 function setSubmission($database, $student_id, $assignment_id, $originalfilename, $file){
     $extractor = new DocxExtractor;
-    $text = $extractor->extractText('/volume1/hofstad/assets/submissions/' . $file);
+    $text = $extractor->extractText(getcwd() . '/assets/submissions/' . $file);
 
     $rows_affected = $database->insert("submissions",
                                         ["student_id" => $student_id,
@@ -18,10 +18,10 @@ function setSubmission($database, $student_id, $assignment_id, $originalfilename
 }
 
 function updateSubmission($database, $student_id, $assignment_id, $originalfilename, $file, $previous){
-    $is_deleted = unlink("/volume1/hofstad/assets/submissions/" . $previous);
+    $is_deleted = unlink(getcwd() . "/assets/submissions/" . $previous);
 
     $extractor = new DocxExtractor;
-    $text = $extractor->extractText('/volume1/hofstad/assets/submissions/' . $file);
+    $text = $extractor->extractText(getcwd() . '/assets/submissions/' . $file);
 
     $rows_affected = $database->update("submissions",
         ["file" => $file,

@@ -11,13 +11,14 @@
     use BootPress\Bootstrap\v3\Component as Bootstrap;
     use Medoo\Medoo as medoo;
 
-    function getDatabase(){
+    function getDatabase() {
+        $db_settings = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . "/config/config.ini");
         $database = new Medoo([
             'database_type' => 'mysql',
-            'database_name' => 'hofstad',
-            'server' => 'srv-01.reinardvandalen.nl',
-            'username' => 'hofstad',
-            'password' => 'LR_hdh4@26', // TODO: Move to config file?
+            'database_name' => $db_settings['database_name'],
+            'server' => $db_settings['server'],
+            'username' => $db_settings['username'],
+            'password' => $db_settings['password'],
             'charset' => 'utf8'
         ]);
         return $database;
@@ -75,7 +76,7 @@
         echo getTemplates()->render("login::login", ["title" => "Tekstmijn | Inloggen"]);
     });
 
-    $router->post("/login/", function (){
+    $router->post("/login/", function () {
         $db = getDatabase();
        if(check_login($db, $_POST['username'], $_POST['password'])){
            session_start();
@@ -179,7 +180,7 @@
 
         $previous_submission = getSubmissionFile($db, $_SESSION["user"], $assignment_id);
 
-        $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
+        $storage = new \Upload\Storage\FileSystem($_SERVER['DOCUMENT_ROOT'] . '/assets/submissions/');
         $file = new \Upload\File('file', $storage);
         $new_filename = uniqid();
         $db_filename = $new_filename . "." . $file->getExtension();
@@ -296,7 +297,7 @@
     });
 
     $router->post('/megaupload/', function (){
-        $storage = new \Upload\Storage\FileSystem('/volume1/hofstad/assets/submissions/');
+        $storage = new \Upload\Storage\FileSystem($_SERVER['DOCUMENT_ROOT'] . '/assets/submissions/');
         $file = new \Upload\File('file', $storage);
         $new_filename = uniqid();
         $db_filename = $new_filename . "." . $file->getExtension();
