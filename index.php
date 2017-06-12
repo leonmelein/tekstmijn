@@ -11,6 +11,18 @@
     use BootPress\Bootstrap\v3\Component as Bootstrap;
     use Medoo\Medoo as medoo;
 
+    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+        if(!headers_sent()) {
+            header("Status: 301 Moved Permanently");
+            header(sprintf(
+                'Location: https://%s%s',
+                $_SERVER['HTTP_HOST'],
+                $_SERVER['REQUEST_URI']
+            ));
+            exit();
+        }
+    }
+
     function getDatabase() {
         $db_settings = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . "/config/config.ini");
         $database = new Medoo([
