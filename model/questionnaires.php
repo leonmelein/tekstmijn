@@ -1,12 +1,7 @@
 <?php
 
 function getQuestionnaires($database, $schoolid){
-    $quoted_id = $database->quote($schoolid);
-    $querystring = "SELECT *
-                    FROM questionnaires
-                    WHERE school_id = $quoted_id";
-
-    return $database->query($querystring)->fetchAll();
+    return $database->select("questionnaire", "*", ["school_id" => $schoolid]);
 }
 
 function getQuestionnaireName($database, $questionnaire_id){

@@ -4,7 +4,11 @@ function getStudents($database){
     return $database->select("students", ["id", "firstname", "lastname"]);
 }
 
-function generateTable($bp, $columns, $data, $options = null, $format = "", $classes = "class=responsive hover"){
+function generateTable($bp, $columns, $data, $options = null, $format = "", $classes = "class=responsive hover", $external = false){
+    if ($classes === null) {
+        $classes = "class=responsive hover";
+    }
+
     $table = $bp->table->open($classes);
     $table .= $bp->table->head();
     foreach ($columns as $column){
@@ -24,18 +28,30 @@ function generateTable($bp, $columns, $data, $options = null, $format = "", $cla
             if(empty($format)){
                 $table .= $bp->table->cell('', $item[$column[1]]);
             } else {
-                $table .= $bp->table->cell('', sprintf($format,
-                    $item['id'],
-                    $item[$column[1]]
-                ));
+                if (!$external){
+                    $table .= $bp->table->cell('', sprintf($format,
+                        $item['id'],
+                        $item[$column[1]]
+                    ));
+                } else {
+                    $table .= $bp->table->cell('', sprintf($format,
+                        $item['qualtrics_url'],
+                        $item[$column[1]]
+                    ));
+                }
             }
 
         }
 
         if (isset($options)) {
             foreach ($options as $option) {
-                $table .= $bp->table->cell('', sprintf($option[0], $item["id"], $item["id"]
-                ));
+                if ($external) {
+                    $table .= $bp->table->cell('', sprintf($option[0], $item["qualtrics_url"], $item["qualtrics_url"]
+                    ));
+                } else {
+                    $table .= $bp->table->cell('', sprintf($option[0], $item["id"], $item["id"]
+                    ));
+                }
             }
         }
     }

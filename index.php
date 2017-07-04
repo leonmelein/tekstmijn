@@ -240,22 +240,21 @@
 
         // Get data
         $data = getQuestionnaires(getDatabase(), $_SESSION['school']);
-        $columns = [["Titel", "name"]];    // TODO: rename name column to title
+        $columns = [["Titel", "title"]];
 
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Vragenlijsten" => "#"]);
-        $link = '<a href="%s/">%s</a>';
+        $link = '<a href="%s" target="_blank">%s</a>';
         $options = [
-            ["<a class='' href='%s/'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
+            ["<a class='' href='%s' target='_blank'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
         ];
-
 
         // Generate page
         echo getTemplates()->render("questionnaires::index", [
             "title" => "Tekstmijn | Vragenlijsten",
             "page_title" => "Vragenlijsten",
-            "table" => generateTable($bp, $columns, $data, $options, $link),
+            "table" => generateTable($bp, $columns, $data, $options, $link, null, true),
             "menu" => $menu,
             "breadcrumbs" => $breadcrumbs,
         ]);
