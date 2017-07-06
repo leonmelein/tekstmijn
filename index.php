@@ -31,7 +31,10 @@
             'server' => $db_settings['server'],
             'username' => $db_settings['username'],
             'password' => $db_settings['password'],
-            'charset' => 'utf8'
+            'charset' => 'utf8md',
+            'command' => [
+                "SET SQL_MODE=ANSI_QUOTES; SET lc_time_names = 'nl_NL'"
+            ]
         ]);
         return $database;
     }
@@ -237,6 +240,7 @@
     $router->get("/questionnaire/", function (){
         $bp = getBootstrap();
         session_start();
+        $studentid = $_SESSION['id'];
 
         // Get data
         $data = getQuestionnaires(getDatabase(), $_SESSION['school']);
@@ -245,7 +249,7 @@
         // Generate menu
         $menu = generateMenu($bp, ["active" => "Vragenlijsten", "align" => "stacked"]);
         $breadcrumbs = generateBreadcrumbs($bp, [$_SESSION["name"] => "#", "Vragenlijsten" => "#"]);
-        $link = '<a href="%s" target="_blank">%s</a>';
+        $link = '<a href="%s?student_id=' .$studentid. '" target="_blank">%s</a>';
         $options = [
             ["<a class='' href='%s' target='_blank'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
         ];
