@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Tekstmijn</title>
+    <parser>
+        <target>phpdocs/output</target>
+        <extensions>
+            <extension>module</extension>
+            <extension>inc</extension>
+            <extension>php</extension>
+        </extensions>
+    </parser>
+    <transformer>
+        <target>phpdocs/docs</target>
+    </transformer>
+    <files>
+        <file>index.php</file>
+        <file>model/auth.php</file>
+        <ignore>vendor/*</ignore>
+        <ignore>assets/*</ignore>
+        <ignore>config/*</ignore>
+        <ignore>view/*</ignore>
+    </files>
+</phpdoc>

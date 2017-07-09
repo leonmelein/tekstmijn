@@ -1,2 +1,4 @@
-.idea/*
-config/config.ini
+.idea/
+assets/submissions/
+config/
+vendor/bin/

@@ -1,8 +1,9 @@
 {
   "name": "Hofstad",
-  "homepage": "https://github.com/thesociallions/hofstad",
+  "homepage": "https://github.com/leonmelein/hofstad",
   "authors": [
-    "Reinard van Dalen <r.g.van.dalen@student.rug.nl> en Léon Melein <l.r.melein@student.rug.nl>"
+    "Reinard van Dalen <r.g.van.dalen@student.rug.nl>",
+    "Léon Melein <l.r.melein@student.rug.nl>"
   ],
   "description": "Stageopdracht MA Information Science",
   "main": "index.php",
