@@ -79,14 +79,16 @@ class model {
     }
 
     /**
-     * @param $bp
-     * @param $columns
-     * @param $data
-     * @param null $options
-     * @param string $format
-     * @param string $classes
-     * @param bool $external
-     * @return string
+     * Generates a table from an array for use in templates.
+     *
+     * @param $bp Bootstrap instance
+     * @param $columns array containing child arrays with the internal column name and the display name
+     * @param $data array containing all data used to fill the table
+     * @param null $options array (optional) to provide additional links for every item; these items are arrays in itself
+     * @param string $format string (optional) containing the formatting for each table entry
+     * @param string $classes string (optional) containing the CSS classes to be assigned to each entry
+     * @param bool $external bool indicating if the given format provides an external link
+     * @return string containing the finalized table
      */
     public function table($bp, $columns, $data, $options = null, $format = "", $classes = "class=responsive hover", $external = false){
         if ($classes === null) {
@@ -145,7 +147,7 @@ class model {
     }
 
     /**
-     * Performs a brower redirect by sending out headers.
+     * Performs a browser redirect by sending out headers.
      *
      * @param $url string containing the URL to redirect to
      * @param int $statusCode Int containing the status code associated (default: 303 Found)
@@ -156,8 +158,10 @@ class model {
     }
 
     /**
-     * @param $array
-     * @return string
+     * Provides <option> entries for a <select> element
+     *
+     * @param $array array containing an associative array with id and name values for each option
+     * @return string containing the <option> elements
      */
     public function options($array){
         $option = "<option value='%s'>%s</option>";
@@ -171,9 +175,11 @@ class model {
     }
 
     /**
-     * @param $array
-     * @param $selected
-     * @return string
+     * Provides <option> entries for a <select> element and sets pre-selected options
+     *
+     * @param $array array containing an associative array with id and name values for each option
+     * @param $selected int containing the selected item's id
+     * @return string containing the <option> elements
      */
     public function options_selected($array, $selected){
         $option = "<option value='%s'>%s</option>";

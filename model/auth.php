@@ -136,7 +136,7 @@ class auth extends model {
     }
 
     /**
-     * Checks if a user is still logged in.
+     * Checks if a user is (still) logged in. If not, the user is redirected to the login page.
      */
     function auth_check(){
         session_start();
