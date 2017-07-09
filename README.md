@@ -8,7 +8,7 @@ Dit ontsluit de volgende functionaliteiten:
 *   Vragenlijsten inzien en invullen.
 
 De hieruit resulterende data kunnen worden geanalyseerd via het
-[stafgedeelte](https://www.github.com/leonmelein/hofstad_staff).
+[stafgedeelte](https://www.github.com/leonmelein/tekstmijn_staff).
 
 ## Systeemvereisten
 *   Voldoende vrije schijfruimte (Advies: minimaal 50 GB)
@@ -17,7 +17,7 @@ De hieruit resulterende data kunnen worden geanalyseerd via het
 
 ## Installatie
 Alvorens het studentengedeelte te installeren, 
-in het zaak om het stafgedeelte eerst te installeren 
+in het zaak om het [stafgedeelte](https://www.github.com/leonmelein/tekstmijn_staff) eerst te installeren 
 en daar studenten aan te maken, zodat deze straks
 de registratie kunnen doorlopen.
 
