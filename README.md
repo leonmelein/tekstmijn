@@ -1,4 +1,6 @@
-# Tekstmijn
+![Logo Tekstmijn](https://tekstmijn.nl/mailheader.png)
+
+# Tekstmijn: studentengedeelte
 Dit is het studentengedeelte van het Tekstmijnproject. 
 Dit ontsluit de volgende functionaliteiten:
 *   Opdrachten inzien en inleveren;
