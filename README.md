@@ -29,7 +29,7 @@ aan. De inhoud hiervan is als volgt:
 server = <Adres van de MySQL Server, meestal: localhost>
 database_name = <Databasenaam>
 username = <Databasegebruiker>
-password = <Wachtwoord atabasegebruiker>
+password = <Wachtwoord databasegebruiker>
 ```
 
 2.  Plaats de bestanden uit deze repository op de server.
