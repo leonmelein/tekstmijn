@@ -21,7 +21,7 @@ class questionnaire extends model {
         $breadcrumbs = $this->breadcrumbs($this->bootstrap, [$_SESSION["name"] => "#", "Vragenlijsten" => "#"]);
         $link = '<a href="%s?student_id=' .$studentid. '" target="_blank">%s</a>';
         $options = [
-            ["<a class='' href='%s' target='_blank'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
+            ["<a class='' href='%s?student_id=" .$studentid. "' target='_blank'><i class='glyphicon glyphicon-pencil'></i> Invullen</a>"],
         ];
 
         // Generate page
